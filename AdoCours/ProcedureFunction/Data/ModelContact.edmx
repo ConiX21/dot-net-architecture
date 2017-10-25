@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBContactModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DBContactModelStoreContainer">
+          <EntitySet Name="Contact" EntityType="DBContactModel.Store.Contact" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="IdContact" />
+          </Key>
+          <Property Name="IdContact" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cp" Type="nvarchar" MaxLength="5" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateNaiss" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Function Name="AllContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdContact" Type="int" Nullable="false" />
+                <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="45" />
+                <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="45" />
+                <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+                <Property Name="Cp" Type="nvarchar" MaxLength="5" />
+                <Property Name="Ville" Type="nvarchar" MaxLength="40" />
+                <Property Name="Email" Type="nvarchar" MaxLength="150" />
+                <Property Name="DateNaiss" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="InsertContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="prenom" Type="nvarchar" Mode="In" />
+          <Parameter Name="dateNaiss" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="InsertContactAndReturn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="prenom" Type="nvarchar" Mode="In" />
+          <Parameter Name="dateNaiss" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="OneContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idContact" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="45" />
+                <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="45" />
+                <Property Name="DateNaiss" Type="datetime" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ReturnNomContact" ReturnType="nvarchar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idContact" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelectionContactNom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBContactModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBContactEntities" p1:LazyLoadingEnabled="true" >
+          <FunctionImport Name="InsertContact">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="prenom" Mode="In" Type="String" />
+            <Parameter Name="dateNaiss" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="InsertContactAndReturn" ReturnType="Collection(Int32)">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="prenom" Mode="In" Type="String" />
+            <Parameter Name="dateNaiss" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SelectionContactNom" ReturnType="Collection(String)">
+          <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Contact" EntityType="DBContactModel.Contact" />
+          <FunctionImport Name="AllContact" IsComposable="true" ReturnType="Collection(DBContactModel.AllContact_Result)" />
+          <FunctionImport Name="OneContact" IsComposable="true" ReturnType="Collection(DBContactModel.OneContact_Result)">
+            <Parameter Name="idContact" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="IdContact" />
+          </Key>
+          <Property Type="Int32" Name="IdContact" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adresse" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Cp" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Ville" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateNaiss" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="AllContact_Result">
+          <Property Type="Int32" Name="IdContact" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="Adresse" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Cp" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="Ville" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="DateNaiss" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="OneContact_Result">
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="45" />
+          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="45" />
+          <Property Type="DateTime" Name="DateNaiss" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBContactModelStoreContainer" CdmEntityContainer="DBContactEntities" >
+          <FunctionImportMapping FunctionImportName="InsertContact" FunctionName="DBContactModel.Store.InsertContact" />
+          <FunctionImportMapping FunctionImportName="InsertContactAndReturn" FunctionName="DBContactModel.Store.InsertContactAndReturn" />
+          <FunctionImportMapping FunctionImportName="SelectionContactNom" FunctionName="DBContactModel.Store.SelectionContactNom" />
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="DBContactModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="DateNaiss" ColumnName="DateNaiss" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Cp" ColumnName="Cp" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AllContact" FunctionName="DBContactModel.Store.AllContact">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBContactModel.AllContact_Result">
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Cp" ColumnName="Cp" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateNaiss" ColumnName="DateNaiss" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OneContact" FunctionName="DBContactModel.Store.OneContact">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBContactModel.OneContact_Result">
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="DateNaiss" ColumnName="DateNaiss" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

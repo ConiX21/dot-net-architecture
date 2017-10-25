@@ -1,0 +1,31 @@
+<h2>
+    {{title}}
+</h2>
+<button class="btn" (click)="goToAdd($event)">Add</button>
+<table class="striped">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products" [style.color]="myColor" (click)="setActiveProduct($event, product.idProduct)">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <a [routerLink]="['/product/details', product.idProduct]">details</a>
+                <button class="btn" (click)="gotoDetails(product.idProduct)" #child child-component>goto details (code)</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation" [hidden]="nbPages().length <= 1">
+  <ul class="pagination">
+    <li *ngFor="let page of nbPages()"><a href="#">{{page+1}}</a></li>
+  </ul>
+</nav>
+<app-product-details [actualProduct]="activeProduct" (onDeleteProduct)="onDeleteProduct($event)" #details>
+</app-product-details>
+<p>{{errorMessage}}</p>

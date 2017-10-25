@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelCours.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelCoursStoreContainer">
+          <EntitySet Name="Contact" EntityType="ModelCours.Store.Contact" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="IdContact" />
+          </Key>
+          <Property Name="IdContact" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="Cp" Type="nvarchar" MaxLength="5" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateNaiss" Type="datetime" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelCours" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="ModelCoursContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contact" EntityType="ModelCours.Contact" />
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="IdContact" />
+          </Key>
+          <Property Type="Int32" Name="IdContact" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Prenom" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Adresse" MaxLength="100" Nullable="true" DefaultValue="" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Ville" MaxLength="40" Nullable="true" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Cp" Nullable="false" />
+          <Property Type="String" Name="Email" MaxLength="150" Nullable="true" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="DateNaiss" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelCoursStoreContainer" CdmEntityContainer="ModelCoursContainer">
+    <EntitySetMapping Name="Contact">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelCours.Contact)">
+        <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Cp" ColumnName="Cp" />
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateNaiss" ColumnName="DateNaiss" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="ModelCours" ZoomLevel="111" >
+        <EntityTypeShape EntityType="ModelCours.Contact" Width="1.5" PointX="0.5" PointY="0.5" Height="2.5571907552083331" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

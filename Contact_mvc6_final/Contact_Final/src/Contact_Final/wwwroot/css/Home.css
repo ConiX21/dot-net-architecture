@@ -1,0 +1,42 @@
+﻿
+html, body {
+    height: 100%;
+    padding-top: 0;
+
+}
+
+header {
+    background-color: grey;
+    align-items: center;
+    background-image: linear-gradient(to left,rgba(56,44,48,.7),rgba(56,44,48,.7)),url(../images/bg-home-man-on-phone.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    padding-bottom: 2.5rem;
+}
+
+.aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fc-cols {
+    max-width:50%;
+    color:white;
+}
+
+.section-one, .section-two{
+    height:500px;
+}
+
+.section-one{
+    background-color:white;
+    color:#9D9D9F;
+}
+
+.section-two{
+    color:white;
+}

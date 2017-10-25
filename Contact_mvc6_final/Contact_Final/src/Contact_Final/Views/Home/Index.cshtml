@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section usage{
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/Home.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/css/home.min.css" rel="stylesheet" />
+    </environment>
+}
+<header class="aligner">
+    <div class="fc-cols max-width text-center">
+        <h1>The power to stay fully connected with your contacts.</h1>
+        <h3>Add context to your relationships with FullContact’s smart, cloud-based address book from anywhere, on any device.</h3>
+    </div>
+</header>
+<section class="aligner section-one text-center">
+    <div class="max-width">
+        <h2>Solves so many problems for me in terms of address book cleanup and processing. FullContact has changed the way I manage my contacts.</h2>
+    </div>
+</section>
+<section class="aligner section-two text-center">
+    <div class="max-width">
+        <h2>Control your social, email, and mobile contacts from one dashboard.</h2>
+    </div>
+</section>

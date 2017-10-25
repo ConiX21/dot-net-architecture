@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelEditeur.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelEditeurStoreContainer">
+    <EntitySet Name="Editeur" EntityType="ModelEditeur.Store.Editeur" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Editeur_EditeurDB" EntityType="ModelEditeur.Store.Editeur_EditeurDB" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Editeur_EditeurInfo" EntityType="ModelEditeur.Store.Editeur_EditeurInfo" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_EditeurDB_inherits_Editeur" Association="ModelEditeur.Store.FK_EditeurDB_inherits_Editeur">
+      <End Role="Editeur" EntitySet="Editeur" />
+      <End Role="EditeurDB" EntitySet="Editeur_EditeurDB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EditeurInfo_inherits_Editeur" Association="ModelEditeur.Store.FK_EditeurInfo_inherits_Editeur">
+      <End Role="Editeur" EntitySet="Editeur" />
+      <End Role="EditeurInfo" EntitySet="Editeur_EditeurInfo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Editeur">
+    <Key>
+      <PropertyRef Name="IdEditeur" />
+    </Key>
+    <Property Name="IdEditeur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Editeur_EditeurDB">
+    <Key>
+      <PropertyRef Name="IdEditeur" />
+    </Key>
+    <Property Name="IdEditeurDB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NbDB" Type="int" Nullable="false" />
+    <Property Name="IdEditeur" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Editeur_EditeurInfo">
+    <Key>
+      <PropertyRef Name="IdEditeur" />
+    </Key>
+    <Property Name="NbLivre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdEditeur" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EditeurDB_inherits_Editeur">
+    <End Role="Editeur" Type="ModelEditeur.Store.Editeur" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EditeurDB" Type="ModelEditeur.Store.Editeur_EditeurDB" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Editeur">
+        <PropertyRef Name="IdEditeur" />
+      </Principal>
+      <Dependent Role="EditeurDB">
+        <PropertyRef Name="IdEditeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EditeurInfo_inherits_Editeur">
+    <End Role="Editeur" Type="ModelEditeur.Store.Editeur" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EditeurInfo" Type="ModelEditeur.Store.Editeur_EditeurInfo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Editeur">
+        <PropertyRef Name="IdEditeur" />
+      </Principal>
+      <Dependent Role="EditeurInfo">
+        <PropertyRef Name="IdEditeur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelEditeur" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelEditeurContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Editeur" EntityType="ModelEditeur.Editeur" />
+        </EntityContainer>
+        <EntityType Name="Editeur">
+          <Key>
+            <PropertyRef Name="IdEditeur" />
+          </Key>
+          <Property Type="Int32" Name="IdEditeur" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nom" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EditeurDB" BaseType="ModelEditeur.Editeur">
+          <Property Name="IdEditeurDB" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Type="Int32" Name="NbDB" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EditeurInfo" BaseType="ModelEditeur.Editeur" >
+          <Property Type="String" Name="NbLivre" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelEditeurStoreContainer" CdmEntityContainer="ModelEditeurContainer">
+    <EntitySetMapping Name="Editeur">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelEditeur.Editeur)">
+        <MappingFragment StoreEntitySet="Editeur">
+          <ScalarProperty Name="IdEditeur" ColumnName="IdEditeur" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelEditeur.EditeurDB)">
+        <MappingFragment StoreEntitySet="Editeur_EditeurDB">
+          <ScalarProperty Name="IdEditeur" ColumnName="IdEditeur" />
+          <ScalarProperty Name="IdEditeurDB" ColumnName="IdEditeurDB" />
+          <ScalarProperty Name="NbDB" ColumnName="NbDB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(ModelEditeur.EditeurInfo)">
+        <MappingFragment StoreEntitySet="Editeur_EditeurInfo">
+          <ScalarProperty Name="IdEditeur" ColumnName="IdEditeur" />
+          <ScalarProperty Name="NbLivre" ColumnName="NbLivre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

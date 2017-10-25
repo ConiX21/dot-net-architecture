@@ -1,0 +1,8 @@
+﻿
+Domaine d'application		|		API de prise en charge qui contiennent des méthodes async
+-------------------------------------------------------------------------------------------------
+Accès Web					|		HttpClient , SyndicationClient
+Utilisation de fichiers		|		StorageFile, StreamWriter, StreamReader, XmlReader
+Utilisation d'images		|		MediaCapture, BitmapEncoder, BitmapDecoder
+Programmation WCF			|		Opérations synchrones et asynchrones
+-------------------------------------------------------------------------------------------------

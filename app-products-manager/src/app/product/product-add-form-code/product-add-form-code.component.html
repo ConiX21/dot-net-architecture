@@ -1,0 +1,44 @@
+<form (ngSubmit)="register()" [formGroup]="productForm">
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <input name="ref" type="text" [ngClass]="{invalid : (productForm.get('ref').untouched && !productForm.get('ref').valid)
+                                          || (productForm.get('ref').touched  || productForm.get('ref').dirty)
+                                           && !productForm.get('ref').valid, validate : productForm.get('ref').valid}" formControlName="ref" id="ref" />
+            <div *ngIf="productForm.get('ref').hasError('required') && productForm.get('ref').dirty">
+                Reference is required
+            </div>
+            <label for="ref">Référence</label>
+        </div>
+        <div class="input-field col s6  offset-s3">
+            <input name="name" type="text" class="validate" formControlName="name" [ngClass]="{invalid : (productForm.get('name').untouched && !productForm.get('name').valid)
+                                          || (productForm.get('name').touched  || productForm.get('name').dirty)
+                                           && !productForm.get('name').valid, validate : productForm.get('name').valid}">
+            <div *ngIf="productForm.get('name').hasError('required')">
+                Name is required
+            </div>
+            <label for="name">Name</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <textarea name="description" class="materialize-textarea validate" formControlName="description" [ngClass]="{invalid : (productForm.get('description').untouched && !productForm.get('description').valid)
+                                          || (productForm.get('description').touched  || productForm.get('description').dirty)
+                                           && !productForm.get('description').valid, validate : productForm.get('description').valid}"></textarea>
+            <div *ngIf="productForm.get('description').hasError('required')">
+                Description is required
+            </div>
+            <label for="description">Description</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <input name="price" type="text" class="validate" formControlName="price" [ngClass]="{invalid : (productForm.get('price').untouched && !productForm.get('price').valid)
+                                          || (productForm.get('price').touched  || productForm.get('price').dirty)
+                                           && !productForm.get('price').valid, validate : productForm.get('price').valid}">
+            <div *ngIf="productForm.get('price').hasError('required')">
+                Price is required
+            </div>
+            <label for="price">Price</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <button class="btn" type="submit" [disabled]="!productForm.valid">Register</button>
+            <button class="btn red" type="reset">Reset</button>
+        </div>
+    </div>
+</form>

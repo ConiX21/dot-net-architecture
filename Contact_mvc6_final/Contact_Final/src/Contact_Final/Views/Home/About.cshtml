@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+<div class="row">
+    <p class="col-sm-12 col-md-6 col-lg-3">
+        Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam, ad Mesopotamiam missus a socero per militares numeros immodice scrutabatur, an quaedam altiora meditantis iam Galli secreta susceperint scripta, qui conpertis Antiochiae gestis per minorem Armeniam lapsus Constantinopolim petit exindeque per protectores retractus artissime tenebatur.
+    </p>
+    <p class="col-sm-12 col-md-6 col-lg-3">
+        Post haec indumentum regale quaerebatur et ministris fucandae purpurae tortis confessisque pectoralem tuniculam sine manicis textam, Maras nomine quidam inductus est ut appellant Christiani diaconus, cuius prolatae litterae scriptae Graeco sermone ad Tyrii textrini praepositum celerari speciem perurgebant quam autem non indicabant denique etiam idem ad usque discrimen vitae vexatus nihil fateri conpulsus est.
+    </p>
+    <p class="col-sm-12 col-md-6 col-lg-3">
+        Verum ad istam omnem orationem brevis est defensio. Nam quoad aetas M. Caeli dare potuit isti suspicioni locum, fuit primum ipsius pudore, deinde etiam patris diligentia disciplinaque munita. Qui ut huic virilem togam deditšnihil dicam hoc loco de me; tantum sit, quantum vos existimatis; hoc dicam, hunc a patre continuo ad me esse deductum; nemo hunc M. Caelium in illo aetatis flore vidit nisi aut cum patre aut mecum aut in M. Crassi castissima domo, cum artibus honestissimis erudiretur.
+    </p>
+    <p class="col-sm-12 col-md-6 col-lg-3">
+        Proinde concepta rabie saeviore, quam desperatio incendebat et fames, amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.
+    </p>
+
+
+</div>
+<div class="alert alert-warning">
+    <ul>
+        @{
+            var list = ViewBag.Informations;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                <li>@list[i]</li>
+            } 
+
+        }
+    </ul>
+</div>
+<div class="alert alert-warning">
+    @ViewBag.Controller
+</div>
+
+
+
+

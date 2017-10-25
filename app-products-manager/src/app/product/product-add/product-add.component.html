@@ -1,0 +1,23 @@
+<form (ngSubmit)="register()">
+    <div class="row">
+        <div class="input-field col s6 offset-s3">
+            <input name="ref" type="text" class="validate" [(ngModel)]="product.ref" id="ref" />
+            <label for="ref">Référence</label>
+        </div>
+        <div class="input-field col s6  offset-s3">
+            <input name="name" type="text" class="validate" [ngModel]="product.name" (ngModelChange)="product.name = $event">
+            <label for="name">Name</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <textarea name="description" class="materialize-textarea validate" [(ngModel)]="product.description"></textarea>
+            <label for="description">Description</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <input name="price" type="text" class="validate" [(ngModel)]="product.price">
+            <label for="price">Price</label>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <button type="submit">Register</button>
+        </div>
+    </div>
+</form>
